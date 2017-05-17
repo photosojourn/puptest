@@ -5,7 +5,7 @@ Puppet 5 in docker container. The tool allows you to easily build an image
 using the latest Puppet 5 nightly against both Centos and Ubuntu. In addtion
 to Puppet 5 version 4 is also supported in order to help with bug investigation.
 This setup is designed for use in a "masterless" setup such as during module 
-development.
+development and add hoc rpec and serverspec testing.
 
 ## Installation
 
