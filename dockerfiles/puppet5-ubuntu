@@ -1,0 +1,12 @@
+FROM ubuntu:xenial
+
+MAINTAINER "Russell Whelan" <russell.whelan+docker@gmail.com>
+
+RUN apt-get update
+RUN apt-get -y install wget
+RUN wget -O /tmp/puppet5-nightly-release-xenial.deb  https://apt.puppetlabs.com/puppet5-nightly-release-xenial.deb; dpkg -i /tmp/puppet5-nightly-release-xenial.deb
+RUN apt-get update
+RUN apt-get -y install puppet-agent 
+RUN echo PATH=$PATH:/opt/puppetlabs/bin >> /root/.bashrc
+
+CMD ["/bin/bash"]

@@ -1,0 +1,7 @@
+FROM centos:centos7
+
+MAINTAINER "Russell Whelan" <russell.whelan+docker@gmail.com>
+
+RUN yum -y install http://yum.puppetlabs.com/puppet5-nightly/puppet5-nightly-release-el-7.noarch.rpm
+RUN yum -y install puppet-agent
+CMD ["/bin/bash"]

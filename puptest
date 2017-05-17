@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+BUILD=0
+DIR_PATH=NULL
+
+while getopts "v:bd::h::" o; do
+  case "${o}" in
+    b) BUILD=1
+      ;;
+    v) DOCKERFILE=${OPTARG}
+      ;;
+    d) DIR_PATH=${OPTARG}
+      ;;
+  esac
+done
+
+if [ "$BUILD" -eq 1 ]
+then
+  docker build --rm --no-cache -t $DOCKERFILE - < dockerfiles/$DOCKERFILE
+  if [ "$?" -ne 0 ] 
+  then 
+    echo "Failure to build new image:Exiting"
+    exit 1
+  fi
+fi
+
+if [ "$DIR_PATH" != "NULL" ]
+then
+  docker run -it -v $DIR_PATH:/puppet:Z $DOCKERFILE /bin/bash
+else
+  docker run -it $DOCKERFILE /bin/bash
+fi
